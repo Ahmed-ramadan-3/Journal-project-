@@ -1,0 +1,80 @@
+:root{--paper:#f6f7f2;--sheet:#fdfdfa;--ink:#1b2745;--rule:#7f98c2;--margin:#b3362c;--muted:#56627e;--ok:#1d6a43;--warn:#8f5700;--err:#a52828;--focus:#2f6fdb}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 1.1rem/1.7 Amiri,"Traditional Arabic","Noto Naskh Arabic",Tahoma,serif;padding:1rem;max-width:1100px;margin-inline:auto}
+h1{font:700 2.3rem/1.2 "Aref Ruqaa",Amiri,serif;margin:0}
+h2{margin:0 0 .6rem;font-size:1.4rem}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.print-only{display:none}
+.top{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:flex-end;border-bottom:3px double var(--margin);padding-bottom:.8rem;margin-bottom:.8rem}
+.note{margin:.2rem 0 0;color:var(--muted);font-size:.95rem;max-width:46ch}
+.newbox{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center}
+.modes{display:inline-flex;border:1.5px solid var(--ink);border-radius:4px;overflow:hidden}
+.mode{font:inherit;background:var(--sheet);color:var(--ink);border:0;padding:.45rem 1rem;min-height:44px;cursor:pointer}
+.mode+.mode{border-inline-start:1.5px solid var(--ink)}
+.mode[aria-pressed=true]{background:var(--ink);color:#fff}
+.btn{font:inherit;background:var(--sheet);color:var(--ink);border:1.5px solid var(--ink);border-radius:4px;padding:.4rem .9rem;min-height:44px;cursor:pointer}
+.btn:hover{background:#eceff6}
+.btn.primary{background:var(--ink);color:#fff}.btn.primary:hover{background:#2b3b66}
+.btn.danger{color:var(--err);border-color:var(--err)}
+.btn.small{min-height:38px;font-size:.95rem;margin-top:.3rem}
+.tools{display:flex;flex-wrap:wrap;gap:.6rem;align-items:flex-end;margin-bottom:.6rem}
+.f{display:flex;flex-direction:column;font-size:.95rem;color:var(--muted);gap:.1rem}.f.grow{flex:1 1 220px}
+input,textarea{font:inherit;color:var(--ink);background:var(--sheet);border:1.5px solid var(--rule);border-radius:4px;padding:.35rem .6rem;min-height:44px;width:100%}
+textarea{resize:vertical}
+.chk{display:flex;gap:.4rem;align-items:center;font-size:.95rem}.chk input{width:auto;min-height:0;transform:scale(1.3)}
+.sum{color:var(--muted);margin:.4rem 0;font-size:.95rem}
+.empty{border:2px dashed var(--rule);padding:2rem 1rem;text-align:center;background:var(--sheet)}
+.hint{color:var(--muted);font-size:.95rem;margin:0}
+.ledger-wrap{overflow-x:auto;background:var(--sheet);border:2px solid var(--ink);box-shadow:0 1px 0 rgba(27,39,69,.15)}
+table{border-collapse:collapse;width:100%;min-width:680px;table-layout:fixed}
+.c-amt{width:130px}.c-date{width:110px}
+th{background:#e9edf5;border-bottom:3px double var(--ink);padding:.4rem .5rem;font-weight:700;text-align:center}
+th+th,td+td{border-inline-start:1px solid var(--rule)}
+th:nth-child(3),td.bayan,td.desc{border-inline-start:3px double var(--margin)}
+th:nth-child(4),td.date{border-inline-start:3px double var(--margin)}
+td{padding:.15rem .6rem;border-bottom:1px solid rgba(127,152,194,.5);vertical-align:top;overflow-wrap:anywhere}
+td.amt{text-align:center;font-variant-numeric:tabular-nums;white-space:nowrap}
+td.bayan.to{padding-inline-start:2.6rem}
+td.date{text-align:center;vertical-align:top;padding-top:.3rem;white-space:nowrap}
+td.desc{font-size:1rem;color:var(--muted);padding-inline-start:1.4rem;font-style:normal}
+tbody.entry{border-bottom:2px solid var(--ink)}
+tbody.is-draft td.bayan{background:repeating-linear-gradient(135deg,transparent 0 9px,rgba(143,87,0,.05) 9px 10px)}
+td.foot{padding:.3rem .6rem;background:#f1f3f8;border-inline-start:0;font-size:.95rem}
+.foot-in{display:flex;flex-wrap:wrap;gap:.4rem 1rem;align-items:center}
+.badge{font-weight:700;padding:0 .6rem;border:1.5px solid currentColor;border-radius:3px}
+.b-ok{color:var(--ok)}.b-bad{color:var(--err)}.b-draft{color:var(--warn)}
+.fa{margin-inline-start:auto;display:flex;gap:.4rem}
+.fa .btn{min-height:36px;padding:.1rem .7rem;font-size:.95rem}
+dialog{width:min(720px,calc(100% - 1rem));max-height:94vh;overflow:auto;background:var(--paper);color:var(--ink);border:2px solid var(--ink);border-radius:4px;padding:1rem;font:inherit}
+dialog::backdrop{background:rgba(20,28,50,.5)}
+#eform{display:grid;gap:.7rem}
+fieldset.side{margin:0;border:1.5px solid var(--rule);padding:.5rem .7rem .7rem}
+fieldset.d legend{color:var(--ink);font-weight:700}fieldset.c legend{color:var(--margin);font-weight:700}
+.line{display:grid;grid-template-columns:1fr 9.5rem auto;gap:.4rem;margin-bottom:.4rem}
+.line .x{min-width:44px;border:1.5px solid var(--err);color:var(--err);background:var(--sheet);border-radius:4px;font-size:1.3rem;cursor:pointer}
+.totals{display:flex;flex-wrap:wrap;gap:.4rem 1.2rem;border:1.5px solid var(--ink);padding:.4rem .7rem;background:var(--sheet)}
+.err{color:var(--err);margin:0;min-height:1.2em;font-weight:700}
+.actions{display:flex;flex-wrap:wrap;gap:.5rem}
+#toast{position:fixed;inset-inline:0;bottom:1rem;margin:auto;width:fit-content;max-width:92%;background:var(--ink);color:#fff;padding:.6rem 1.1rem;border-radius:4px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:50}
+#toast.show{opacity:1}#toast.err{background:var(--err)}
+@media (max-width:560px){body{padding:.6rem}h1{font-size:1.9rem}.line{grid-template-columns:1fr 7.5rem auto}.btn{flex:1 1 auto}.tools .f{flex:1 1 40%}}
+@media (prefers-reduced-motion:reduce){#toast{transition:none}}
+@page{margin:14mm}
+@media print{
+ body{background:#fff;color:#000;padding:0;max-width:none;font-size:12pt}
+ .noprint,dialog,#toast{display:none!important}
+ .print-only{display:block;text-align:center;margin-bottom:.5rem}
+ .print-only h2{font:700 20pt "Aref Ruqaa",Amiri,serif}.print-only p{margin:0}
+ .ledger-wrap{overflow:visible;border:1.5px solid #000;box-shadow:none;background:#fff}
+ table{min-width:0}
+ thead{display:table-header-group}
+ th{background:#fff;color:#000;border-bottom:3px double #000}
+ th,td{border-color:#000!important}
+ td{border-bottom:1px solid #999}
+ tbody.entry{break-inside:avoid;page-break-inside:avoid;border-bottom:1.5px solid #000}
+ td.desc,td.foot{color:#000;background:#fff}
+ tbody.is-draft td.bayan{background:none}
+ .fa{display:none}.badge{color:#000!important}
+}

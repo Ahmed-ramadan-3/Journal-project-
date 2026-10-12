@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>دفتر اليومية</title>
+<meta name="description" content="دفتر يومية محاسبي شخصي لطلبة العلوم الإدارية. يعمل بالكامل داخل المتصفح.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Aref+Ruqaa:wght@700&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="top noprint">
+  <div>
+    <h1>دفتر اليومية</h1>
+    <p class="note">بياناتك محفوظة في هذا المتصفح وعلى هذا الجهاز فقط، ولا تُزامَن مع أي جهاز آخر. صدّر نسخة احتياطية لنقلها.</p>
+  </div>
+  <div class="newbox">
+    <div class="modes" role="group" aria-label="نوع القيد الجديد">
+      <button type="button" class="mode" data-mode="simple">قيد بسيط</button>
+      <button type="button" class="mode" data-mode="compound">قيد متعدد</button>
+    </div>
+    <button type="button" class="btn primary" id="addBtn">إضافة قيد</button>
+  </div>
+</header>
+
+<section class="tools noprint" aria-label="أدوات الدفتر">
+  <label class="f grow">بحث في القيود<input type="search" id="q" placeholder="اسم حساب أو كلمة من البيان"></label>
+  <label class="f">من تاريخ<input type="date" id="from"></label>
+  <label class="f">إلى تاريخ<input type="date" id="to"></label>
+  <button type="button" class="btn" id="sortBtn"></button>
+  <button type="button" class="btn" id="clearF">مسح التصفية</button>
+</section>
+<section class="tools noprint" aria-label="النسخ الاحتياطي والطباعة">
+  <button type="button" class="btn" id="expJson">تصدير نسخة احتياطية (JSON)</button>
+  <button type="button" class="btn" id="expCsv">تصدير CSV</button>
+  <button type="button" class="btn" id="impBtn">استيراد نسخة احتياطية</button>
+  <input type="file" id="file" accept=".json,application/json" hidden>
+  <button type="button" class="btn" id="printBtn">طباعة / حفظ PDF</button>
+  <label class="chk"><input type="checkbox" id="digits"> أرقام عربية (١٢٣)</label>
+  <button type="button" class="btn danger" id="wipe">حذف كل بيانات الدفتر</button>
+</section>
+
+<main>
+  <div id="printMeta" class="print-only"><h2>دفتر اليومية</h2><p id="printRange"></p></div>
+  <p id="sum" class="sum noprint" aria-live="polite"></p>
+  <div id="empty" class="empty noprint" hidden>
+    <p id="emptyMsg"></p>
+    <p class="hint">مثال على البيان: «إثبات عملية شراء نقدًا»</p>
+  </div>
+  <div class="ledger-wrap" id="ledgerWrap" tabindex="0" role="region" aria-label="جدول دفتر اليومية">
+    <table id="ledger">
+      <caption class="sr">دفتر اليومية: من حـ، له حـ، البيان، التاريخ</caption>
+      <colgroup><col class="c-amt"><col class="c-amt"><col><col class="c-date"></colgroup>
+      <thead><tr><th scope="col">من حـ/</th><th scope="col">له حـ/</th><th scope="col">البيان</th><th scope="col">التاريخ</th></tr></thead>
+    </table>
+  </div>
+</main>
+
+<dialog id="editor" aria-labelledby="etitle">
+<form id="eform" novalidate>
+  <h2 id="etitle"></h2>
+  <div class="modes" id="emodes" role="group" aria-label="نوع القيد">
+    <button type="button" class="mode" data-mode="simple">قيد بسيط</button>
+    <button type="button" class="mode" data-mode="compound">قيد متعدد</button>
+  </div>
+  <label class="f">التاريخ<input type="date" id="edate" required></label>
+  <fieldset class="side d"><legend>من حـ/ (المدين)</legend><div id="dl"></div>
+    <button type="button" class="btn small" id="addD">إضافة سطر مدين</button></fieldset>
+  <fieldset class="side c"><legend>له حـ/ (الدائن)</legend><div id="cl"></div>
+    <button type="button" class="btn small" id="addC">إضافة سطر دائن</button></fieldset>
+  <label class="f">البيان<textarea id="edesc" rows="2" maxlength="300" placeholder="اكتب شرح العملية بكلماتك، مثال: إثبات عملية شراء نقدًا"></textarea></label>
+  <div class="totals" id="etotals" aria-live="polite"></div>
+  <p id="eerr" class="err" role="alert"></p>
+  <div class="actions">
+    <button type="button" class="btn primary" id="saveC">حفظ كقيد مكتمل</button>
+    <button type="button" class="btn" id="saveD">حفظ كمسودة</button>
+    <button type="button" class="btn" id="cancelE">إلغاء</button>
+  </div>
+</form>
+</dialog>
+
+<dialog id="confirm" aria-labelledby="cmsg">
+  <p id="cmsg"></p>
+  <div class="actions"><button type="button" class="btn danger" id="cok">تأكيد</button><button type="button" class="btn" id="ccancel">إلغاء</button></div>
+</dialog>
+
+<div id="toast" role="status" aria-live="polite"></div>
+<script src="app.js"></script>
+</body>
+</html>
